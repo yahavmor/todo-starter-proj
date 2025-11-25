@@ -1,23 +1,25 @@
+
 import { TodoFilter } from "../cmps/TodoFilter.jsx"
 import { TodoList } from "../cmps/TodoList.jsx"
 import { todoService } from "../services/todo.service.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
-import { removeTodo,loadTodos,setLoading } from "../store/todo.actions.js"
+import { removeTodo,loadTodos} from "../store/todo.actions.js"
 
 
 const { useState, useEffect } = React
 const { Link, useSearchParams } = ReactRouterDOM
-const { useSelector, useDispatch } = ReactRedux
+const { useSelector } = ReactRedux
+const { useNavigate } = ReactRouter
+
+
 
 export function TodoIndex() {
-    const dispatch = useDispatch()
-
     const todos = useSelector((state) => state.todos)
     const isLoading = useSelector((state) => state.isLoading)
+    const navigate = useNavigate()
 
 
 
-    // Special hook for accessing search-params:
     const [searchParams, setSearchParams] = useSearchParams()
 
     const defaultFilter = todoService.getFilterFromSearchParams(searchParams)
@@ -34,11 +36,7 @@ export function TodoIndex() {
     }, [filterBy])
 
     function onRemoveTodo(todoId) {
-        removeTodo(todoId)
-            .catch(err => {
-                console.log('err:', err)
-                showErrorMsg('Cannot remove todo ' + todoId)
-            })
+        navigate(`/todo/${todoId}/remove`)
     }
 
     function onToggleTodo(todo) {

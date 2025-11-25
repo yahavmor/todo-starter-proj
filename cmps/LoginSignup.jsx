@@ -1,14 +1,13 @@
+
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { userService } from '../services/user.service.js'
-import { login } from '../store/user.actions.js'
+import { login , signup, toggleSignUp } from '../store/user.actions.js'
 
 
 const { useState } = React
-
-export function LoginSignup({ onSetUser }) {
-    
-
-    const [isSignup, setIsSignUp] = useState(false)
+const { useSelector } = ReactRedux
+export function LoginSignup() {
+    const isSignup = useSelector((storeState) => storeState.isSignup)
     const [credentials, setCredentials] = useState(userService.getEmptyCredentials())
 
     function handleChange({ target }) {
@@ -33,11 +32,9 @@ export function LoginSignup({ onSetUser }) {
     }
 
     function _signup(credentials) {
-        console.log('Signing up with credentials:', credentials)
-        userService.signup(credentials)
-            .then(onSetUser)
-            .then(() => { showSuccessMsg('Signed in successfully') })
-            .catch((err) => { showErrorMsg('Oops try again') })
+        signup(credentials)
+        .then(() => { showSuccessMsg('Signed in successfully') })
+        .catch((err) => { showErrorMsg('Oops try again') })
     }
 
     return (
@@ -73,7 +70,7 @@ export function LoginSignup({ onSetUser }) {
             </form>
 
             <div className="btns">
-                <a href="#" onClick={() => setIsSignUp(!isSignup)}>
+                <a href="#" onClick={() => toggleSignUp()}>
                     {isSignup ?
                         'Already a member? Login' :
                         'New user? Signup here'

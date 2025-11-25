@@ -1,4 +1,3 @@
-
 const Router = ReactRouterDOM.HashRouter
 const { Routes, Route } = ReactRouterDOM
 const { Provider } = ReactRedux
@@ -13,6 +12,8 @@ import { AboutTeam } from "./cmps/AboutTeam.jsx"
 import { AboutVision } from "./cmps/AboutVision.jsx"
 import { Dashboard } from "./pages/Dashboard.jsx"
 import {store} from './store/store.js'
+import { TodoRemoveModal } from "./pages/TodoRemoveModal.jsx"
+
 
 export function RootCmp() {
     return (
@@ -28,6 +29,7 @@ export function RootCmp() {
                                 <Route path="vision" element={<AboutVision />} />
                             </Route>
                             <Route path="/todo/:todoId" element={<TodoDetails />} />
+                            <Route path="/todo/:todoId/remove" element={<TodoRemoveModal/>} />
                             <Route path="/todo/edit/:todoId" element={<TodoEdit />} />
                             <Route path="/todo/edit" element={<TodoEdit />} />
                             <Route path="/todo" element={<TodoIndex />} />
@@ -40,3 +42,5 @@ export function RootCmp() {
         </Provider>
     )
 }
+
+

@@ -32,6 +32,7 @@ export function TodoEdit() {
 
             case 'checkbox':
                 value = target.checked
+                console.log()
                 break
 
             default:

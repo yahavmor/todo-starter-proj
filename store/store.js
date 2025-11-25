@@ -9,11 +9,13 @@ export const REMOVE_TODO = 'REMOVE_TODO';
 export const ADD_TODO = 'ADD_TODO';
 export const SET_LOADING = 'SET_LOADING';
 export const SET_USER = 'SET_USER';
+export const TOGGLE_SIGNUP = 'TOGGLE_SIGNUP';
 
 const initialState = {
     todos: [],
     isLoading: false,
-    loggedInUser : userService.getLoggedinUser()
+    loggedInUser : userService.getLoggedinUser(),
+    isSignup: false
 };
 
 
@@ -22,8 +24,6 @@ function appReducer(state = initialState, cmd={}) {
             case SET_TODOS:
                   return { ...state,
                          todos: cmd.todos }
-            default:
-                  return state;
             case REMOVE_TODO:
                   return { ...state,
                         todos: state.todos.filter(todo => todo._id !== cmd.todoId) }
@@ -35,7 +35,12 @@ function appReducer(state = initialState, cmd={}) {
                         isLoading: cmd.isLoading }
             case SET_USER:
                   return { ...state,
-                        loggedInUser: cmd.user }
+                        loggedInUser: cmd.loggedInUser}
+            case TOGGLE_SIGNUP:
+                  return { ...state,
+                        isSignup: !state.isSignup }
+            default:
+                  return state;
       }
 }
 

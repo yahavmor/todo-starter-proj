@@ -38,7 +38,6 @@ function appReducer(state = initialState, cmd = {}) {
             return { ...state, isLoading: cmd.isLoading };
 
         case SET_USER:
-            console.log('Setting user in store:', cmd.loggedInUser);
             return { ...state, loggedInUser: cmd.loggedInUser };
 
         case TOGGLE_SIGNUP:

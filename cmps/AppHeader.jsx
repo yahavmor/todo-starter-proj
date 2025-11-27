@@ -36,7 +36,6 @@ export function AppHeader() {
         }}
         >
         <section className="header-container">
-            <h1>React Todo App</h1>
             {loggedInUser ? (
                 <section>
                     <Link className="user-link" to={`/user/${loggedInUser._id}`}>Hello {loggedInUser.fullname}</Link>

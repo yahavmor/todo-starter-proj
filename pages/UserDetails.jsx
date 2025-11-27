@@ -4,8 +4,8 @@ const { useSelector } = ReactRedux
 const { useNavigate } = ReactRouterDOM
 
 export function UserDetails() {
-
-
+  const { useSelector } = ReactRedux 
+  const { useNavigate } = ReactRouterDOM
   const { useState } = React
 
   const loggedInUser = useSelector((storeState) => storeState.loggedInUser)
@@ -16,11 +16,7 @@ export function UserDetails() {
   function handleChange({ target }) {
     const field = target.name
     const value = target.value
-
-    setPrefs(prevPrefs => ({
-      ...prevPrefs,
-      [field]: value
-    }))
+    setPrefs(prevPrefs => ({ ...prevPrefs, [field]: value }))
   }
 
   function savePrefs(ev) {
@@ -31,39 +27,45 @@ export function UserDetails() {
   }
 
   return (
-    <form className="user-details" onSubmit={savePrefs}>
-      <h1 className="main-header">User Details</h1>
-      <h2 className="settings-header">Set preferences</h2>
+    <form className="user-details card" onSubmit={savePrefs}>
+      <h1 className="main-header"> User Details</h1>
+      <h2 className="settings-header"> Set Preferences</h2>
 
-      <label htmlFor="userName">User Name:</label>
-      <input
-        type="text"
-        id="userName"
-        name="userName"
-        placeholder="Enter your user name"
-        value={prefs.userName || ''}   
-        onChange={handleChange}
-      />
+      <div className="form-group">
+        <label htmlFor="userName">User Name</label>
+        <input
+          type="text"
+          id="userName"
+          name="userName"
+          placeholder="Enter your user name"
+          value={prefs.userName || ''}   
+          onChange={handleChange}
+        />
+      </div>
 
-      <label htmlFor="txt-colour">Set text colour:</label>
-      <input
-        type="color"
-        id="txt-colour"
-        name="txt-colour"
-        value={prefs['txt-colour'] || '#ffffff'}
-        onChange={handleChange}
-      />
+      <div className="form-group">
+        <label htmlFor="txt-colour">Text Colour</label>
+        <input
+          type="color"
+          id="txt-colour"
+          name="txt-colour"
+          value={prefs['txt-colour'] || '#ffffff'}
+          onChange={handleChange}
+        />
+      </div>
 
-      <label htmlFor="bgc-colour">Set background colour:</label>
-      <input
-        type="color"
-        id="bgc-colour"
-        name="bgc-colour"
-        value={prefs['bgc-colour'] || '#000000'}
-        onChange={handleChange}
-      />
+      <div className="form-group">
+        <label htmlFor="bgc-colour">Background Colour</label>
+        <input
+          type="color"
+          id="bgc-colour"
+          name="bgc-colour"
+          value={prefs['bgc-colour'] || '#000000'}
+          onChange={handleChange}
+        />
+      </div>
 
-      <button className="save-btn">Save Settings</button>
+      <button className="save-btn"> Save Settings</button>
     </form>
   )
 }

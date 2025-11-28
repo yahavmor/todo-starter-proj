@@ -63,3 +63,10 @@ flex-direction: column;
 .save-btn:hover {
   background: #005fa3;
 }
+.activities {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #666;
+  font-size: 4.1rem;
+}
+

@@ -3,6 +3,7 @@ import { TodoList } from "../cmps/TodoList.jsx"
 import { todoService } from "../services/todo.service.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { loadTodos} from "../store/todo.actions.js"
+import { Footer } from "../cmps/Footer.jsx"
 
 
 const { useState, useEffect } = React
@@ -28,9 +29,9 @@ export function TodoIndex() {
     useEffect(() => {
         setSearchParams(filterBy)
         loadTodos(filterBy)
-            .catch(err => {
-                showErrorMsg('Cannot load todos')
-            })
+        .catch(err => {
+            showErrorMsg('Cannot load todos')
+        })
         
     }, [filterBy])
 
@@ -51,7 +52,6 @@ export function TodoIndex() {
             })
     }
 
-    
     return (
         <section className="todo-index">
             <TodoFilter filterBy={filterBy} onSetFilterBy={setFilterBy} />
@@ -59,10 +59,11 @@ export function TodoIndex() {
                 <Link to="/todo/edit" className="btn" >Add Todo</Link>
             </div>
             <h2>Todos List</h2>
-
+            {!isLoading && todos.length === 0 && <p>No todos found</p>}
             {isLoading?'Loading...':<TodoList todos={todos} onRemoveTodo={onRemoveTodo} onToggleTodo={onToggleTodo} />}
             <hr />
             <h2>Todos Table</h2>
+            <Footer />
         </section>
     )
 }

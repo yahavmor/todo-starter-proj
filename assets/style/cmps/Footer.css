@@ -1,0 +1,42 @@
+.footer {
+  background-color: #2c2c2c;       
+  color: #f0f0f0;                  
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+  border-top: 3px solid #ff69b4;   
+}
+
+.footer p {
+  margin: 0.5rem 0;
+  color: inherit;                  
+}
+
+.footer section {
+  margin-top: 1rem;
+  color: inherit;                 
+}
+
+.progress-percentage {
+  margin: 0.5rem auto;
+  font-weight: bold;
+  color: inherit;                  
+}
+
+.progress-bar {
+  width: 80%;
+  max-width: 400px;
+  height: 10px;
+  margin: 0.5rem auto;
+  background-color: #444;
+  border-radius: 5px;
+  overflow: hidden;
+  color: inherit;                  
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #ff69b4;       
+  transition: width 0.4s ease;
+  color: inherit;                  
+}
